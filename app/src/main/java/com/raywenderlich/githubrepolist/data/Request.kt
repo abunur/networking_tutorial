@@ -10,6 +10,6 @@ class Request(private val url: String) {
   
   fun run() {
     val repoListJsonStr = URL(url).readText()
-    val d = Log.d(javaClass.simpleName, repoListJsonStr)
+    Log.d(javaClass.simpleName, repoListJsonStr)
   }
 }
