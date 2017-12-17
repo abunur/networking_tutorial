@@ -1,6 +1,10 @@
 package com.raywenderlich.githubrepolist.ui.activities
 
 import android.app.Activity
+import android.app.AlertDialog
+
+import android.content.Context
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -12,7 +16,7 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 
-class MainActivity: Activity {
+class MainActivity: Activity() {
 
   private val items = listOf(
       "JetBrains/kotlin - The Kotlin Programming Language",
@@ -34,9 +38,26 @@ class MainActivity: Activity {
     //search for popular tetris repositories written in Kotlin
 //    val url = "https://api.github.com/search/repositories?q=tetris+language:kotlin&sort=stars&order=desc"
     val url = "https://api.github.com/search/repositories?q=mario+language:kotlin&sort=stars&order=desc"
-    doAsync {
-      Request(url).run()
-      uiThread { longToast("Request performed") }
+
+    if (isNetworkConnected()) {
+      doAsync {
+        Request(url).run()
+        uiThread { longToast("Request performed") }
+      }
+    } else {
+      AlertDialog.Builder(this).setTitle("No Internet Connection")
+          .setMessage("Please check your internet connection and try again")
+          .setPositiveButton(android.R.string.ok) { dialog, which -> }
+          .setIcon(android.R.drawable.ic_dialog_alert).show()
     }
+
+
   }
+
+  private fun isNetworkConnected(): Boolean {
+    val connectivityManager = getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+    val networkInfo = connectivityManager.activeNetworkInfo
+    return networkInfo != null && networkInfo.isConnected
+  }
+
 }
