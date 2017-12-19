@@ -42,10 +42,11 @@ class Request() {
 
   companion object {
     //search for popular tetris repositories written in Kotlin
-//    val url = "https://api.github.com/search/repositories?q=tetris+language:kotlin&sort=stars&order=desc"
+//    private val url = "https://api.github.com/search/repositories?q=tetris+language:kotlin&sort=stars&order=desc"
 
     private val URL = "https://api.github.com/search/repositories"
-    private val SEARCH = "q=mario+language:kotlin&sort=stars&order=desc"
+//    private val SEARCH = "q=mario+language:kotlin&sort=stars&order=desc"
+    private val SEARCH = "q=tetris+language:kotlin&sort=stars&order=desc"
     private val COMPLETE_URL = "$URL?$SEARCH"
   }
   
