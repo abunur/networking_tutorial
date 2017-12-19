@@ -12,7 +12,7 @@ import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 
-class MainActivity: Activity {
+class MainActivity: Activity() {
 
   private val items = listOf(
       "JetBrains/kotlin - The Kotlin Programming Language",
