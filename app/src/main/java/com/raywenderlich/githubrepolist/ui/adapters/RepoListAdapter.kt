@@ -34,7 +34,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+//import android.widget.TextView
 import com.raywenderlich.githubrepolist.R
 import com.raywenderlich.githubrepolist.data.Item
 import com.raywenderlich.githubrepolist.data.RepoResult
@@ -67,8 +67,7 @@ class RepoListAdapter(private val repoList: RepoResult) : RecyclerView.Adapter<R
 
     fun bindRepo(repo: Item) {
       with(repo) {
-        //TODO: bind avatar image using Picasso
-//        repo.owner.login.let { itemView.username.text = repo.owner.login }
+        //TODO: bind avatar image using Picasso (bonus!)
         itemView.username.text = repo.owner.login.orEmpty()
         itemView.repoName.text = repo.full_name.orEmpty()
         itemView.repoDescription.text = repo.description.orEmpty()

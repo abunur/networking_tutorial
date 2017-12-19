@@ -41,7 +41,7 @@ import com.raywenderlich.githubrepolist.R
 import com.raywenderlich.githubrepolist.data.Request
 import com.raywenderlich.githubrepolist.ui.adapters.RepoListAdapter
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.longToast
+//import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 import kotlinx.android.synthetic.main.activity_main.*
 
