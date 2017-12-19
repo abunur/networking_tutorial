@@ -28,17 +28,14 @@
  * THE SOFTWARE.
  */
 
-package com.raywenderlich.githubrepolist.data
+package com.raywenderlich.githubrepolist.extensions
 
-import android.util.Log
-import java.net.URL
+import android.content.Context
+import android.view.View
 
 /**
- * Created by abunur on 12/12/17.
+ * Created by abunur on 12/18/17.
  */
-class Request(private val url: String) {
-  
-  fun run() {
-    //TODO: implement
-  }
-}
+
+val View.ctx: Context
+  get() = context
