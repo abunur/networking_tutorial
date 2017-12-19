@@ -46,7 +46,8 @@ class Request() {
 
     private val URL = "https://api.github.com/search/repositories"
 //    private val SEARCH = "q=mario+language:kotlin&sort=stars&order=desc"
-    private val SEARCH = "q=tetris+language:kotlin&sort=stars&order=desc"
+//    private val SEARCH = "q=tetris+language:kotlin&sort=stars&order=desc"
+private val SEARCH = "q=language:kotlin&sort=stars&order=desc"
     private val COMPLETE_URL = "$URL?$SEARCH"
   }
   
