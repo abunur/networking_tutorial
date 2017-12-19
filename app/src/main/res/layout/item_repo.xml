@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   ~ Copyright (c) 2017 Razeware LLC
   ~
@@ -28,11 +29,51 @@
   ~ THE SOFTWARE.
   -->
 
-<resources>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:gravity="center_vertical"
+  android:orientation="horizontal">
 
-  <!-- Base application theme. -->
-  <style name="AppTheme" parent="android:Theme.Material.Light.DarkActionBar">
-    <!-- Customize your theme here. -->
-  </style>
+  <ImageView
+    android:id="@+id/icon"
+    android:layout_width="48dp"
+    android:layout_height="48dp"
+    tools:src="@mipmap/ic_launcher"/>
 
-</resources>
+  <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+    <TextView
+      android:id="@+id/username"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="User Name"/>
+
+  </LinearLayout>
+
+  <LinearLayout
+    android:layout_width="0dp"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <TextView
+      android:id="@+id/repoName"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="Repo Name"/>
+
+    <TextView
+      android:id="@+id/repoDescription"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      tools:text="Repo Description"/>
+
+  </LinearLayout>
+
+</LinearLayout>
