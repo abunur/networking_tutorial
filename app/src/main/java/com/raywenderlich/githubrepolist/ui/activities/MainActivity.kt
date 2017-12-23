@@ -37,13 +37,22 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.util.Log
 import com.raywenderlich.githubrepolist.R
+import com.raywenderlich.githubrepolist.api.GithubService
+import com.raywenderlich.githubrepolist.api.RepositoryRetriever
+import com.raywenderlich.githubrepolist.data.Item
+import com.raywenderlich.githubrepolist.data.RepoResult
 import com.raywenderlich.githubrepolist.data.Request
 import com.raywenderlich.githubrepolist.ui.adapters.RepoListAdapter
 import org.jetbrains.anko.doAsync
 //import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
 import kotlinx.android.synthetic.main.activity_main.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
 
 class MainActivity : Activity() {
 
@@ -65,12 +74,29 @@ class MainActivity : Activity() {
 //    repoList.adapter = RepoListAdapter(items)
 
     if (isNetworkConnected()) {
-      doAsync {
-        val result = Request().run()
-        uiThread {
-          repoList.adapter = RepoListAdapter(result)
+//      doAsync {
+//        val result = Request().run()
+//        uiThread {
+//          repoList.adapter = RepoListAdapter(result)
+//        }
+//      }
+      //Using Retrofit:
+      var repoRetriever = RepositoryRetriever()
+
+      val callback = object : Callback<RepoResult> {
+        override fun onFailure(call: Call<RepoResult>?, t: Throwable?) {
+          Log.e("MainActivity", "Problem calling Github API", t)
+        }
+
+        override fun onResponse(call: Call<RepoResult>?, response: Response<RepoResult>?) {
+          response?.isSuccessful.let {
+            val resultList = RepoResult(response?.body()?.items!!)
+            repoList.adapter = RepoListAdapter(resultList)
+          }
         }
       }
+      repoRetriever.getRepositories(callback)
+
     } else {
       AlertDialog.Builder(this).setTitle("No Internet Connection")
           .setMessage("Please check your internet connection and try again")
