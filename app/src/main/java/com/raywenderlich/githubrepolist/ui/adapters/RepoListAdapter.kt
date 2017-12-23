@@ -40,7 +40,7 @@ import com.raywenderlich.githubrepolist.data.Item
 import com.raywenderlich.githubrepolist.data.RepoResult
 import com.raywenderlich.githubrepolist.extensions.ctx
 import kotlinx.android.synthetic.main.item_repo.view.*
-
+import com.squareup.picasso.Picasso
 /**
  * Created by abunur on 12/12/17.
  */
@@ -71,6 +71,10 @@ class RepoListAdapter(private val repoList: RepoResult) : RecyclerView.Adapter<R
         itemView.username.text = repo.owner.login.orEmpty()
         itemView.repoName.text = repo.full_name.orEmpty()
         itemView.repoDescription.text = repo.description.orEmpty()
+        val avatar_url = repo.owner.avatar_url.orEmpty()
+        if (avatar_url.isNotEmpty()) {
+          Picasso.with(itemView.ctx).load(avatar_url).into(itemView.icon)
+        }
       }
     }
   }
