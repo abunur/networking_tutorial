@@ -3,14 +3,13 @@ package com.raywenderlich.githubrepolist.ui.activities
 import android.app.Activity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import com.raywenderlich.githubrepolist.R
 import com.raywenderlich.githubrepolist.data.Request
 import com.raywenderlich.githubrepolist.ui.adapters.RepoListAdapter
 import org.jetbrains.anko.doAsync
-import org.jetbrains.anko.find
 import org.jetbrains.anko.longToast
 import org.jetbrains.anko.uiThread
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity: Activity() {
 
@@ -28,7 +27,6 @@ class MainActivity: Activity() {
     super.onCreate(savedInstanceState)
     setContentView(R.layout.activity_main)
 
-    val repoList = find<RecyclerView>(R.id.repo_list)
     repoList.layoutManager = LinearLayoutManager(this)
     repoList.adapter = RepoListAdapter(items)
     //search for popular tetris repositories written in Kotlin
